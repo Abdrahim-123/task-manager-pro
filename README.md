@@ -144,8 +144,7 @@ task-manager-pro/
 
 ## 👤 Author
 
-**[Your Name]**  
-Full Stack Developer
+**Abdul Rahim Memon**  
 
 ---
 
