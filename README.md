@@ -146,8 +146,3 @@ task-manager-pro/
 
 **Abdul Rahim Memon**  
 
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
