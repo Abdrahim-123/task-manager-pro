@@ -16,16 +16,15 @@ function Login() {
     const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // 1. Send the request to: http://localhost:5000/api/auth/login
+            // Send login request
         const response = await axios.post('http://localhost:5000/api/auth/login', formData);
 
-      // 2. The server sent back a token! Let's save it.
-      // The token is inside: response.data.token
-        localStorage.setItem('token', response.data.token); 
+            // Save returned token
+                localStorage.setItem('token', response.data.token); 
 
         alert('Login Successful!');
     
-      // 3. Redirect to Dashboard
+            // Redirect to dashboard
         navigate('/dashboard'); 
     
     } catch (err) {

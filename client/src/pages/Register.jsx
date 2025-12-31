@@ -8,28 +8,21 @@ function Register() {
     email: '',
     password: ''
     });
-  const navigate = useNavigate(); // Used to redirect user after success
+    const navigate = useNavigate(); // Navigation after successful registration
 
-  // 1. Update State when user types
+    // Update form state on input
     const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-  // 2. Send data to Backend when button is clicked
+    // Submit registration to API
     const handleSubmit = async (e) => {
-    e.preventDefault(); // Stop page from refreshing
+        e.preventDefault(); // Prevent page reload
     try {
-      // ---------------------------------------------------------
-      // YOUR TURN: Write the axios code here!
-      // The URL is: 'http://localhost:5000/api/auth/register'
-      // The data to send is: formData
-      // ---------------------------------------------------------
-        
-    
-        const response = await axios.post('http://localhost:5000/api/auth/register', formData); // <--- CHECK THIS LINE
+                const response = await axios.post('http://localhost:5000/api/auth/register', formData);
 
         alert('Registration Successful!');
-        navigate('/'); // Redirect to Login page
+                navigate('/'); // Redirect to login
     } catch (err) {
         console.error(err);
         alert('Error: ' + (err.response?.data?.message || 'Something went wrong'));

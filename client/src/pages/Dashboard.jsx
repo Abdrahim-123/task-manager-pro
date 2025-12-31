@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState(''); 
-  const [isLoading, setIsLoading] = useState(true); // Loading State
+  const [isLoading, setIsLoading] = useState(true); // Loading state
   
-  // EDIT MODE STATES
-  const [editingTaskId, setEditingTaskId] = useState(null); // Track which task is being edited
-  const [editTitle, setEditTitle] = useState(''); // Track the new text
+  // Edit mode state
+  const [editingTaskId, setEditingTaskId] = useState(null); // ID of task in edit mode
+  const [editTitle, setEditTitle] = useState(''); // Current edit title
 
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
@@ -34,7 +34,7 @@ function Dashboard() {
 
   const handleAddTask = async (e) => {
     e.preventDefault();
-    if(!newTask.trim()) return; // Prevent empty tasks
+    if(!newTask.trim()) return; // Avoid empty tasks
     try {
       await axios.post('http://localhost:5000/api/tasks', 
         { title: newTask },
@@ -46,7 +46,7 @@ function Dashboard() {
   };
 
   const handleDelete = async (id) => {
-    if(!window.confirm("Are you sure?")) return; // Simple confirmation
+    if(!window.confirm("Are you sure?")) return; // Confirm delete
     try {
       await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
         headers: { Authorization: token }
@@ -65,13 +65,13 @@ function Dashboard() {
     } catch (err) { console.error(err); }
   };
 
-  // --- NEW: START EDITING ---
+  // Begin edit mode
   const startEditing = (task) => {
-    setEditingTaskId(task._id); // Enable edit mode for this task
-    setEditTitle(task.title);   // Pre-fill the input with current text
+    setEditingTaskId(task._id); // Enter edit mode for this task
+    setEditTitle(task.title);   // Prefill input with current title
   };
 
-  // --- NEW: SAVE EDIT ---
+  // Save edit
   const saveEdit = async (id) => {
     try {
       await axios.put(`http://localhost:5000/api/tasks/${id}`, 
@@ -96,7 +96,7 @@ function Dashboard() {
           <button onClick={handleLogout} className="btn-danger" style={{width: 'auto'}}>Logout</button>
         </div>
 
-        {/* Add Task Form */}
+        {/* Add task */}
         <form onSubmit={handleAddTask} style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
           <input 
             type="text" 
@@ -107,18 +107,18 @@ function Dashboard() {
           <button type="submit" className="btn-primary" style={{ width: '100px' }}>Add</button>
         </form>
 
-        {/* Loading / Empty State */}
+        {/* Loading / empty state */}
         {isLoading && <p style={{textAlign: 'center'}}>Loading tasks...</p>}
         {!isLoading && tasks.length === 0 && <p style={{textAlign: 'center', color: '#94a3b8'}}>No tasks yet. Add one above!</p>}
 
-        {/* Task List */}
+        {/* Task list */}
         <div style={{ marginTop: '20px' }}>
           {tasks.map(task => (
             <div key={task._id} className="task-item">
               
-              {/* CONDITIONAL RENDERING: Are we editing this specific task? */}
+              {/* Editing this task? */}
               {editingTaskId === task._id ? (
-                // EDIT MODE UI
+                // Edit mode
                 <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
                   <input 
                     value={editTitle} 
@@ -129,7 +129,7 @@ function Dashboard() {
                   <button onClick={() => setEditingTaskId(null)} className="btn-outline">Cancel</button>
                 </div>
               ) : (
-                // NORMAL MODE UI
+                // View mode
                 <>
                   <span 
                     onClick={() => handleToggle(task)}
