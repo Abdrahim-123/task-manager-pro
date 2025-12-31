@@ -1,7 +1,7 @@
 // Login page: authenticates a user and stores JWT
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import API_URL from '../api';
 
 function Login() {
@@ -58,6 +58,9 @@ function Login() {
                         Login
                     </button>
                 </form>
+                <p>
+                    Don't have an account? <Link to="/register">Register here</Link>
+                </p>
             </div>
         </div>
     );
