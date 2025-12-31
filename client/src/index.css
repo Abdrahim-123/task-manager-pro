@@ -2,7 +2,7 @@
   --bg-color: #0f172a;       /* Dark Navy */
   --card-bg: #1e293b;        /* Lighter Navy */
   --text-primary: #f8fafc;   /* White-ish */
-  --text-secondary: #94a3b8; /* Grey */
+  --text-secondary: #cbd5e1; /* Light Grey */
   --accent: #38bdf8;         /* Light Blue */
   --danger: #ef4444;         /* Red */
   --success: #22c55e;        /* Green */
@@ -10,63 +10,84 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif; /* Modern font */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-primary);
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  font-size: 16px; /* Base size */
 }
 
-/* Container for all pages */
+/* Container: Made wider for better visibility */
 .container {
   width: 100%;
-  max-width: 500px;
-  margin-top: 50px;
+  max-width: 800px; /* INCREASED from 500px */
+  margin-top: 60px;
   padding: 20px;
 }
 
-/* Card Style (Glass effect) */
+/* Card Style */
 .card {
   background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  padding: 2.5rem; /* INCREASED padding */
+  border-radius: 16px; /* Rounder corners */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
   border: 1px solid #334155;
 }
 
-h1, h2 { text-align: center; margin-bottom: 1.5rem; color: var(--accent); }
+h1, h2 { 
+  text-align: center; 
+  margin-bottom: 2rem; 
+  color: var(--accent);
+  font-size: 2.5rem; /* Bigger Headings */
+}
 
-/* Form Elements */
-input {
+/* Big Inputs for everything */
+input, select {
   width: 100%;
-  padding: 12px;
+  padding: 16px; /* INCREASED clickable area */
   margin-bottom: 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #475569;
   background-color: #334155;
   color: white;
-  box-sizing: border-box; /* Fixes padding issues */
+  font-size: 1.1rem; /* Larger text inside input */
+  box-sizing: border-box;
+  transition: border-color 0.2s;
 }
 
-input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+input:focus, select:focus { 
+  outline: none; 
+  border-color: var(--accent); 
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
 
-/* Buttons */
+/* Big Buttons */
 button {
   width: 100%;
-  padding: 12px;
+  padding: 16px; /* INCREASED size */
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem; /* Larger text */
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: all 0.2s;
 }
 
+button:hover { filter: brightness(1.1); }
 button:active { transform: scale(0.98); }
 
 .btn-primary { background-color: var(--accent); color: #0f172a; }
-.btn-danger  { background-color: var(--danger); color: white; width: auto; padding: 5px 10px; }
-.btn-outline { background-color: transparent; border: 1px solid var(--accent); color: var(--accent); width: auto; padding: 5px 10px;}
+.btn-success { background-color: var(--success); color: #0f172a; width: auto; padding: 10px 20px; }
+.btn-danger  { background-color: var(--danger); color: white; width: auto; padding: 10px 20px; }
+.btn-outline { 
+  background-color: transparent; 
+  border: 2px solid var(--accent); /* Thicker border */
+  color: var(--accent); 
+  width: auto; 
+  padding: 8px 16px;
+}
 
 /* Task List Items */
 .task-item {
@@ -74,15 +95,16 @@ button:active { transform: scale(0.98); }
   align-items: center;
   justify-content: space-between;
   background-color: #334155;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 8px;
-  animation: fadeIn 0.3s ease-in;
+  margin-bottom: 15px; /* More spacing between tasks */
+  padding: 20px; /* BIGGER padding inside task */
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.2s;
 }
 
-.task-actions { display: flex; gap: 8px; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.task-item:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
 }
+
+.task-actions { display: flex; gap: 12px; }

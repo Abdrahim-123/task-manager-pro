@@ -1,18 +1,20 @@
+// Express server bootstrap: wires middleware, DB, and routes
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Enable CORS
+const cors = require('cors');
 
 const app = express();
 
 // Middleware
-app.use(cors()); // CORS should be registered first
-app.use(express.json());
+app.use(cors()); // Enable CORS for local dev and client usage
+app.use(express.json()); // Parse JSON bodies
 
 // Database connection
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("Connected to Database!"))
-    .catch((err) => console.log("Connection Failed:", err));
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => console.log('Connected to Database!'))
+    .catch((err) => console.log('Connection Failed:', err));
 
 // Routes
 const authRoutes = require('./routes/auth');

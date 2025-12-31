@@ -1,67 +1,69 @@
+// Register page: creates a new user account
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
+        username: '',
+        email: '',
+        password: '',
     });
-    const navigate = useNavigate(); // Navigation after successful registration
+    const navigate = useNavigate();
 
     // Update form state on input
     const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // Submit registration to API
+    // Submit registration to API and redirect on success
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent page reload
-    try {
-                const response = await axios.post('http://localhost:5000/api/auth/register', formData);
-
-        alert('Registration Successful!');
-                navigate('/'); // Redirect to login
-    } catch (err) {
-        console.error(err);
-        alert('Error: ' + (err.response?.data?.message || 'Something went wrong'));
-    }
+        e.preventDefault();
+        try {
+            await axios.post('http://localhost:5000/api/auth/register', formData);
+            alert('Registration Successful!');
+            navigate('/'); // Go to login
+        } catch (err) {
+            console.error(err);
+            alert('Error: ' + (err.response?.data?.message || 'Something went wrong'));
+        }
     };
 
     return (
-    <div className="container">
-        <div className="card">
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                name="username" 
-                placeholder="Username" 
-                onChange={handleChange} 
-                required 
-            />
-            <br />
-            <input 
-                type="email" 
-                name="email" 
-                placeholder="Email" 
-                onChange={handleChange} 
-                required 
-            />
-            <br />
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="Password" 
-                onChange={handleChange} 
-                required 
-            />
-            <br />
-            <button type="submit" className="btn-primary">Register</button>
-            </form>
+        <div className="container">
+            <div className="card">
+                <h2>Register</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    <button type="submit" className="btn-primary">
+                        Register
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
     );
 }
 
