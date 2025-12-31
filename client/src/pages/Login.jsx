@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../api';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -19,10 +20,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                'http://localhost:5000/api/auth/login',
-                formData
-            );
+            const response = await axios.post(`${API_URL}/api/auth/login`, formData);
 
             // Persist token for authenticated requests
             localStorage.setItem('token', response.data.token);

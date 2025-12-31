@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../api';
+
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
@@ -25,7 +27,7 @@ function Dashboard() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks', {
+      const res = await axios.get(`${API_URL}/api/tasks`, {
         headers: { Authorization: token }
       });
       setTasks(res.data);
@@ -40,7 +42,7 @@ function Dashboard() {
     e.preventDefault();
     if(!newTask.trim()) return;
     try {
-      await axios.post('http://localhost:5000/api/tasks', 
+      await axios.post(`${API_URL}/api/tasks`, 
         { 
           title: newTask,
           category: newCategory,
@@ -61,7 +63,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this task?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+      await axios.delete(`${API_URL}/api/tasks/${id}`, {
         headers: { Authorization: token }
       });
       fetchTasks();
@@ -70,7 +72,7 @@ function Dashboard() {
 
   const handleToggle = async (task) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${task._id}`, 
+      await axios.put(`${API_URL}/api/tasks/${task._id}`, 
         { status: task.status === 'completed' ? 'pending' : 'completed' },
         { headers: { Authorization: token } }
       );
@@ -85,7 +87,7 @@ function Dashboard() {
 
   const saveEdit = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${id}`, 
+      await axios.put(`${API_URL}/api/tasks/${id}`, 
         { title: editTitle },
         { headers: { Authorization: token } }
       );
