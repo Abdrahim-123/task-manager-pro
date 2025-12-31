@@ -1,0 +1,88 @@
+:root {
+  --bg-color: #0f172a;       /* Dark Navy */
+  --card-bg: #1e293b;        /* Lighter Navy */
+  --text-primary: #f8fafc;   /* White-ish */
+  --text-secondary: #94a3b8; /* Grey */
+  --accent: #38bdf8;         /* Light Blue */
+  --danger: #ef4444;         /* Red */
+  --success: #22c55e;        /* Green */
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Modern font */
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Container for all pages */
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+/* Card Style (Glass effect) */
+.card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
+}
+
+h1, h2 { text-align: center; margin-bottom: 1.5rem; color: var(--accent); }
+
+/* Form Elements */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background-color: #334155;
+  color: white;
+  box-sizing: border-box; /* Fixes padding issues */
+}
+
+input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+button:active { transform: scale(0.98); }
+
+.btn-primary { background-color: var(--accent); color: #0f172a; }
+.btn-danger  { background-color: var(--danger); color: white; width: auto; padding: 5px 10px; }
+.btn-outline { background-color: transparent; border: 1px solid var(--accent); color: var(--accent); width: auto; padding: 5px 10px;}
+
+/* Task List Items */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #334155;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.task-actions { display: flex; gap: 8px; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
