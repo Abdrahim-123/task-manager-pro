@@ -1,9 +1,13 @@
 # 🚀 Task Manager Pro
 
+**GitHub**: https://github.com/Abdrahim-123/task-manager-pro
+
+**Frontend**: https://task-manager-pro-git-main-abdul-rahims-projects-15b82580.vercel.app/
+
+**Backend**: https://task-manager-api-9p6q.onrender.com/
+
 **Task Manager Pro** is a full-stack **MERN** application for managing daily tasks with a modern **glassmorphism-inspired UI**.  
 The project demonstrates complete **CRUD operations**, **secure authentication**, and **protected routes**, making it a solid example of a production-style web application.
-
-> 📌 **Note:** Add a screenshot of your dashboard named **`screenshot.png`** to the root folder of the project.
 
 ---
 
